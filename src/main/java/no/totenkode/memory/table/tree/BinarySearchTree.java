@@ -1,5 +1,6 @@
 package no.totenkode.memory.table.tree;
 
+import java.util.List;
 import java.util.Set;
 
 public class BinarySearchTree {
@@ -93,21 +94,23 @@ public class BinarySearchTree {
      * Order
      */
 
-    public long index(long key) {
-        return index(root, key, 0);
+    public long index(long id) {
+        return index(root, id, 0);
     }
 
-    private long index(BinarySearchTreeNode root, long key, long index) {
+    private long index(BinarySearchTreeNode root, long id, long index) {
         if (root == null) {
-            throw new RuntimeException("not found");
+            return Long.MIN_VALUE;
         }
-        if (root.key == key) {
+        if (root.ids.contains(id)) {
             return index;
         }
-        if (root.key > key) {
-            return index(root.left, key, index + root.ids.size());
+        final long left = index(root.left, id, index + root.ids.size());
+        final long right = index(root.right, id, index + root.ids.size());
+        if(left == Long.MIN_VALUE || left > right) {
+            return right;
         }
-        return index(root.right, key, index + root.ids.size());
+        return left;
     }
 
     /*
@@ -126,7 +129,7 @@ public class BinarySearchTree {
         }
     }
 
-    private String printIds(Set<Long> ids) {
+    private String printIds(List<Long> ids) {
         final StringBuilder builder = new StringBuilder();
         for (Long id : ids) {
             builder.append(id).append(", ");

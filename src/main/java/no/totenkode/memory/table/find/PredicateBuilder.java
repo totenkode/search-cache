@@ -20,11 +20,6 @@ public class PredicateBuilder {
         return predicates;
     }
 
-    public PredicateBuilder words(String field, String words) {
-        predicates.add(new WordPredicate(field, words));
-        return this;
-    }
-
     public PredicateBuilder string(String field, String string) {
         predicates.add(new StringPredicate(field, string));
         return this;

@@ -11,7 +11,10 @@ import org.reflections.scanners.TypeAnnotationsScanner;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 public class Main {
@@ -19,10 +22,21 @@ public class Main {
     public static void main(String[] args) throws Exception {
         final Repository repository = create();
 
-        repository.save(new TestObject("some_id", "The name of this shit", true, false));
+        Random random = new Random();
+        for (long i = 0; i < 100; i++) {
+            repository.save(new TestObject(i, true, new Date(), new BigDecimal("100"), random.nextInt(100)));
+        }
+
+
+//        repository.save(new TestObject(1L, true, new Date(), new BigDecimal("100"), 111));
+//        repository.save(new TestObject(2L, true, new Date(), new BigDecimal("200"), 111));
+//        repository.save(new TestObject(3L, true, new Date(), new BigDecimal("100"), 111));
+//        repository.save(new TestObject(4L, false, new Date(), new BigDecimal("200"), 222));
+//        repository.save(new TestObject(5L, true, new Date(), new BigDecimal("100"), 222));
+//        repository.save(new TestObject(6L, true, new Date(), new BigDecimal("200"), 222));
 
         final PredicateBuilder builder = new PredicateBuilder(TestObject.class);
-        builder.string("text", "name");
+        builder.equal("quantity", 94);
 
         final List<Long> result = repository.find(builder, 10);
 

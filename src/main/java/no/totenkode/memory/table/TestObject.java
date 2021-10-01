@@ -3,57 +3,72 @@ package no.totenkode.memory.table;
 import no.totenkode.memory.table.annotation.Column;
 import no.totenkode.memory.table.annotation.Table;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 @Table("test_object")
 public class TestObject {
 
     @Column("id")
-    private String id;
+    private Long id;
 
-    @Column("text")
-    private String text;
+    @Column("active")
+    private boolean active;
 
-    @Column("bool_unboxed")
-    private boolean unboxedBoolean;
+    @Column("timestamp")
+    private Date timestamp;
 
-    @Column("bool_boxed")
-    private Boolean boxedBoolean;
+    @Column("price")
+    private BigDecimal price;
 
-    public TestObject(String id, String text, boolean unboxedBoolean, Boolean boxedBoolean) {
+    @Column("quantity")
+    private Integer quantity;
+
+    public TestObject(Long id, boolean active, Date timestamp, BigDecimal price, Integer quantity) {
         this.id = id;
-        this.text = text;
-        this.unboxedBoolean = unboxedBoolean;
-        this.boxedBoolean = boxedBoolean;
+        this.active = active;
+        this.timestamp = timestamp;
+        this.price = price;
+        this.quantity = quantity;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public boolean isUnboxedBoolean() {
-        return unboxedBoolean;
+    public Date getTimestamp() {
+        return timestamp;
     }
 
-    public void setUnboxedBoolean(boolean unboxedBoolean) {
-        this.unboxedBoolean = unboxedBoolean;
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Boolean getBoxedBoolean() {
-        return boxedBoolean;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setBoxedBoolean(Boolean boxedBoolean) {
-        this.boxedBoolean = boxedBoolean;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
