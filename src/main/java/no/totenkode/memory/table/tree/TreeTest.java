@@ -1,8 +1,35 @@
 package no.totenkode.memory.table.tree;
 
+import java.util.Random;
+
 public class TreeTest {
 
+    private static final int million = 1000000;
+
+    private static void test() {
+        final int[] data = new int[million * 10];
+        long time;
+        time = System.currentTimeMillis();
+        Random random = new Random();
+        for (int i = 0; i < million * 10; i++) {
+            data[i] = random.nextInt();
+        }
+        System.out.println("insert: " + (System.currentTimeMillis() - time));
+        time = System.currentTimeMillis();
+        for (int i = 0; i < million * 10; i++) {
+            if(data[i] == 10000) {
+                System.out.println(i);
+            }
+        }
+        System.out.println("search: " + (System.currentTimeMillis() - time));
+    }
+
     public static void main(String[] args) {
+
+        test();
+        test();
+        test();
+        test();
 
 //        final BinarySearchTree tree = new BinarySearchTree();
 //
